@@ -1,0 +1,23 @@
+//index
+
+.section-intro-image{
+    min-height: 250px;
+}
+
+@include media-breakpoint-up(md){
+    .section-vertical-margin-md{
+        margin-bottom: -24px;
+        margin-top: -24px;
+    }
+
+    
+    .section-vertical-md{
+        writing-mode: vertical-rl;
+        
+    }
+}
+
+.section-vertical-content{
+    line-height: 2.5;
+    max-height: 420px;
+}

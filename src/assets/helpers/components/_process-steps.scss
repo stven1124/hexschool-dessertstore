@@ -1,0 +1,48 @@
+//check-1
+
+.process-steps{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.process-steps::before{
+    position: absolute;
+    content: '';
+    top:50%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: $pinkdark;
+}
+
+.step-circle{
+    height: 20px;
+    width: 20px;
+    border: 1px solid #8DA291;
+    border-radius: 50%;
+    position: relative;
+    background-color: #3F5D45;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active{
+        border: 1px solid #fff;
+        &::after{
+            content: "";
+            height: 14px;
+            width: 14px;
+            display: block;
+            background-color: #EAF0ED;
+            border-radius: 20px;
+        }
+    }
+}
+
+.completed{
+    font-size: 14px;
+    color:$pinkdark;
+    background: #fff;
+}

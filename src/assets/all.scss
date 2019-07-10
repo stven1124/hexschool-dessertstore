@@ -1,0 +1,84 @@
+/* bootstrap */
+@import "~bootstrap/scss/functions";
+@import "./helpers/variables";
+@import "~bootstrap/scss/bootstrap";
+
+/* 自定義 */
+@import "./dashboard";
+
+/* custom */
+@import "./helpers/components/cart";
+@import "./helpers/components/item-card";
+@import "./helpers/components/nav";
+@import "./helpers/components/process-steps";
+@import "./helpers/components/section";
+@import "./helpers/components/utilities";
+@import "./helpers/components/product";
+
+.form-control {
+  border-width: 2px;
+}
+
+.header-carousel-item {
+  height: 600px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel-caption {
+  background-color: rgba(#F1B1C3, .8);
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (min-width: 768px) {
+  .text-md-dark {
+    color: #333;
+  }
+}
+
+/* 置頂鍵 */
+.back {
+  position: fixed;
+  right: 30px;
+  bottom: 20px;
+  z-index: 999;
+  i {
+    color: #A3C4A3;
+  }
+   }
+  @media (max-width: 767px) {
+    .back {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999; } 
+  }
+
+  /*購物車旁數量icon*/
+
+  .cart-icon-counter{
+    position: absolute;
+    top:0;
+    right:0;
+    background-color: #fff;
+    border: 2px solid $pinkdark;
+    border-radius: 50%;
+    padding:0px 7px;
+    text-decoration: none;
+    
+  }
+
+  .cart-icon{
+    position: relative;
+    i{
+      padding:12px 3px;
+    }
+    &:hover{
+      text-decoration: none;
+    }
+  }

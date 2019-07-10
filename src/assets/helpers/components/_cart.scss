@@ -1,0 +1,26 @@
+//cart
+
+.cart-image{
+    height:110px;
+    min-width: 110px;
+}
+
+.cart-image-sm{
+    height:80px;
+}
+
+.cart-control{
+    width: 145px;
+}
+
+@include media-breakpoint-up(md){
+    .cart-box-content{
+        background-color: $pinkdark;
+        color:white;
+    }
+}
+
+.cart-box-title {
+    background-color: $pinkdark;
+    color: white;
+  }

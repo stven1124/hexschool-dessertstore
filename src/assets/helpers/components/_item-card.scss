@@ -1,0 +1,63 @@
+.item-card{
+  border : 1px  solid  $pinkdark;
+	height : 100%;
+	overflow : hidden;
+}
+
+.item-image{
+    height: 315px;
+}
+
+.item-tag{
+    color:white;
+    background-color: theme-color('pinkdark');
+    position: absolute;
+    padding: 15px 10px;
+    letter-spacing: 5px;
+    top: 0;
+    left: 40px;
+    writing-mode: vertical-lr;
+}
+
+.item-love-icon{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+}
+
+.love-checked-display {
+    cursor: pointer;
+    .love-show, .love-checkbox {
+      display: none;
+    }
+    .love-checkbox:checked {
+      & ~ .love-show {
+        display: block;
+      }
+      & ~ .love-hidden {
+        display: none;
+      }
+    }
+}
+
+.item-body{
+    font-size: $font-size-lg;
+}
+
+.item-name{
+    border-right: 1px solid theme-color('pinkdark');
+}
+
+.item-footer {
+  background-color: $pinkdark;
+	button {
+		text-align : center ;    
+		outline : none ;
+    border : none ;
+		border-radius : 0px ;
+		font-weight : bolder ;
+		padding : 15px 45px;
+	  height : 100%;
+	  overflow : hidden ;
+	}
+}

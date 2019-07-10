@@ -1,0 +1,14 @@
+//check-3
+
+.nav.nav-dark {
+    &.nav-pills > .nav-link {
+      border: $pinkdark 1px solid;
+    }
+    .nav-link {
+      color: $pinkdark;
+    }
+    .nav-link.active {
+      background-color: $pinkdark;
+      color: $pinkdark;
+    }
+}
