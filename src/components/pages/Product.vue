@@ -12,6 +12,31 @@
           class="w-100"
           alt
         >
+        <div class="d-md-none">
+        <div class="bg-pinkdark px-3 py-4 mt-3">
+          <h1 class="h2 pb-2 text-center text-white">
+            {{ product.title }}
+          </h1>
+          <hr class="border-white mt-0">
+          <div class="d-flex justify-content-end mb-3">
+            <del class="text-muted align-self-end">售價 {{ product.origin_price | currency}}</del>
+            <div class="h3 mb-0 ml-auto text-white">
+              <small>一口價 NT</small>
+              <strong>{{ product.price | currency}}</strong>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <select class="form-control" v-model="product.buyNum">
+              <option :value="num" v-for="num in 10" :key="num">{{ num }}{{ product.unit }}</option>
+            </select>
+          </div>
+          <p class="text-right text-main font-weight-bold  mb-2">
+						小計 {{product.buyNum*product.price | currency}}
+					</p> 
+          
+          <a href="#" class="btn btn-block btn-lg btn-graylight font-weight-bold" @click.prevent="addtoCart(product.id, product.num)">加入購物車</a>
+        </div>
+      </div>
         <div class="productIntro">
           <h3>產品描述</h3>
           <p>{{ product.description }}</p>
@@ -52,8 +77,8 @@
           </p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="sticky-top bg-pinkdark px-3 py-4">
+      <div class="col-md-4 d-none d-md-block">
+        <div class="sticky-top bg-pinkdark px-3 py-4 mb-3">
           <h1 class="h2 pb-2 text-center text-white">
             {{ product.title }}
           </h1>

@@ -37,7 +37,7 @@
             <div
               class="ml-md-auto align-items-center py-3 justify-content-end d-flex flex-md-row-reverse"
             >
-              <a href="#" class="btn d-md-block d-none" @click.prevent="delCartProduct(item.id)">
+              <a href="#" class="btn" @click.prevent="delCartProduct(item.id)">
                 <i class="fas fa-trash-alt"></i>
               </a>
               <span class="h5 mb-0 mr-md-1">NT{{item.qty*item.product.price | currency}}</span>
@@ -64,7 +64,7 @@
             >結帳</router-link>
           </div>
         </div>
-        <div class="col-md-12 text-center" v-else="cart.carts.length = 0">
+        <div class="col-md-12 text-center" v-else>
           <div class="jumbotron bg-white text-pinkdark">
             <h1 class="display-4 font-weight-bold">購物車內空無一物!</h1>
             <p

@@ -44,7 +44,7 @@
       </div>
     </nav>
 
-    <!-- 註冊,登入彈跳視窗 -->
+    <!-- 登入後台彈跳視窗 -->
     <div
       class="modal fade"
       id="loginModal"
@@ -197,6 +197,12 @@ $(document).ready(function() {
       setMagicLine(navItem);
     });
   });
+
+  //收合Navbar
+  $('.nav-item').click(function(event) {
+        event.preventDefault();
+        $(this).parents().find('.show').removeClass('show');
+    });
 });
 </script>
 

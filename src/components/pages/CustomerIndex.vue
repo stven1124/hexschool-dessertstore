@@ -61,7 +61,7 @@
       <h2 class="h1 text-pinkdark text-center my-5">熱門商品</h2>
       <div class="row">
         <div
-          class="col-md-4 mb-5 mb-lg-0"
+          class="col-xl-4 mb-5"
           v-for="(item) in getthreeProduct"
           :key="item.id"
         >
