@@ -17,10 +17,10 @@
     <div class="item-footer">
       <div class="row no-gutters">
         <div class="col text-center">
-          <button class="btn btn-block btn-pinkdark" @click.prevent="productIntro">詳細介紹</button>
+          <button class="btn btn-block btn-pinkdark text-nowrap" @click.prevent="productIntro">詳細介紹</button>
         </div>
         <div class="col text-center border-left border-white">
-          <button class="btn btn-block btn-pinkdark" @click.prevent="returnProductID">加入購物車</button>
+          <button class="btn btn-block btn-pinkdark text-nowrap" @click.prevent="returnProductID">加入購物車</button>
         </div>
       </div>
     </div>

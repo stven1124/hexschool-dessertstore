@@ -217,7 +217,6 @@
           <div
             class="col-md-5 d-flex align-items-center justify-content-center justify-content-md-start mb-4 mb-md-0"
           >
-            <img src="images/logo-light.svg" width="40" height="40" alt>
             <label class="mx-3 text-white h4 mb-0" for="subemail">訂閱我的最新資訊</label>
           </div>
           <div class="col-md-5">
