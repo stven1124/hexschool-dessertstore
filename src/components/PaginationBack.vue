@@ -35,9 +35,14 @@
 
 <script>
 export default {
-  props: ["pages"],
   data() {
     return {};
+  },
+  props: {
+    pages: {
+      type: Object,
+      default: {}
+    }
   },
   methods: {
     updatePage(page) {

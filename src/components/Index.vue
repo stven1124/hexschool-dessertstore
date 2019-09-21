@@ -27,8 +27,11 @@ export default {
 };
 
 $(document).ready(function() {
+
+  //網頁置頂時隱藏返回鍵
   $('.back').hide(0);
 
+  //超過一定畫面顯示返回鍵
   $(window).scroll(function () {
         if ($(this).scrollTop() > $(window).height() / 4 ) {
             $('.back').fadeIn(500);

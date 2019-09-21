@@ -66,7 +66,7 @@
                     id="image"
                     placeholder="請輸入圖片連結"
                     v-model="tempProduct.imageUrl"
-                  >
+                  />
                 </div>
                 <div class="form-group">
                   <label for="customFile">
@@ -83,9 +83,9 @@
                     class="form-control"
                     ref="files"
                     @change="uploadFile()"
-                  >
+                  />
                 </div>
-                <img class="img-fluid" :src="tempProduct.imageUrl" alt>
+                <img class="img-fluid" :src="tempProduct.imageUrl" alt />
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
@@ -97,7 +97,7 @@
                     placeholder="請輸入標題"
                     maxlength="60"
                     v-model="tempProduct.title"
-                  >
+                  />
                 </div>
 
                 <div class="form-row">
@@ -110,7 +110,7 @@
                       placeholder="請輸入分類"
                       maxlength="5"
                       v-model="tempProduct.category"
-                    >
+                    />
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">單位</label>
@@ -121,7 +121,7 @@
                       placeholder="請輸入單位"
                       maxlength="3"
                       v-model="tempProduct.unit"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@
                       id="origin_price"
                       placeholder="請輸入原價"
                       v-model="tempProduct.origin_price"
-                    >
+                    />
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">售價</label>
@@ -144,10 +144,10 @@
                       id="price"
                       placeholder="請輸入售價"
                       v-model="tempProduct.price"
-                    >
+                    />
                   </div>
                 </div>
-                <hr>
+                <hr />
 
                 <div class="form-group">
                   <label for="description">產品描述</label>
@@ -178,7 +178,7 @@
                       v-model="tempProduct.is_enabled"
                       :true-value="1"
                       :false-value="0"
-                    >
+                    />
                     <label class="form-check-label" for="is_enabled">是否啟用</label>
                   </div>
                 </div>
@@ -192,48 +192,21 @@
         </div>
       </div>
     </div>
-    <div
-      class="modal fade"
-      id="delProductModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content border-0">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <span>刪除產品</span>
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            是否刪除
-            <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="delProduct">確認刪除</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <DelModal id="delProductModal" :modalData="tempProduct" @delCheck="delProduct"></DelModal>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
 import PaginationBack from "../PaginationBack";
+import DelModal from "../DelModal";
 
 export default {
   data() {
     return {
       products: [],
       tempProduct: {},
-      pagination: [],
+      pagination: {},
       isNew: false,
       isLoading: false,
       status: {
@@ -242,15 +215,14 @@ export default {
     };
   },
   components: {
-    PaginationBack
+    PaginationBack,
+    DelModal,
   },
   methods: {
     getProducts(page = 1) {
       const vm = this;
       vm.isLoading = true;
-      const api = `${process.env.APIPATH}/api/${
-        process.env.CUSTOMERPATH
-      }/admin/products?page=${page}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/admin/products?page=${page}`;
       this.$http.get(api).then(response => {
         if (response.data.success) {
           console.log(response.data);
@@ -272,25 +244,21 @@ export default {
     },
     updateProduct() {
       const vm = this;
-      let api = `${process.env.APIPATH}/api/${
-        process.env.CUSTOMERPATH
-      }/admin/product`;
+      let api = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/admin/product`;
       let httpMethod = "post";
       if (!vm.isNew) {
-        api = `${process.env.APIPATH}/api/${
-          process.env.CUSTOMERPATH
-        }/admin/product/${vm.tempProduct.id}`;
+        api = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/admin/product/${vm.tempProduct.id}`;
         httpMethod = "put";
       }
       this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
           console.log(response.data);
           $("#productModal").modal("hide");
-          vm.getProducts(vm.page = vm.pagination.current_page);
+          vm.getProducts((vm.page = vm.pagination.current_page));
           this.$bus.$emit("messsage:push", response.data.message, "success");
         } else {
           $("#productModal").modal("hide");
-          vm.getProducts(vm.page = vm.pagination.current_page);
+          vm.getProducts((vm.page = vm.pagination.current_page));
           this.$bus.$emit("messsage:push", response.data.message, "danger");
         }
       });
@@ -303,9 +271,7 @@ export default {
     delProduct() {
       const vm = this;
       vm.isLoading = true;
-      const api = `${process.env.APIPATH}/api/${
-        process.env.CUSTOMERPATH
-      }/admin/product/${vm.tempProduct.id}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/admin/product/${vm.tempProduct.id}`;
       this.$http.delete(api).then(response => {
         if (response.data.success) {
           console.log(response.data);
@@ -323,9 +289,7 @@ export default {
       const vm = this;
       vm.status.fileUpLoading = true;
       const uploadedFile = this.$refs.files.files[0];
-      const url = `${process.env.APIPATH}/api/${
-        process.env.CUSTOMERPATH
-      }/admin/upload`;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/admin/upload`;
       const formData = new FormData();
       formData.append("file-to-upload", uploadedFile);
       this.$http

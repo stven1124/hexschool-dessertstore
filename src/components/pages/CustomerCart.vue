@@ -49,6 +49,18 @@
             <h2 class="text-center cart-box-title py-3 h4">訂單摘要</h2>
             <hr class="border-white mt-0" />
             <div class="d-flex justify-content-between mb-2">
+              <span>※折扣碼請於購物商品選完後再輸入</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <input
+                type="text"
+                class="form-control col-9 mr-1"
+                placeholder="請輸入優惠券序號"
+                v-model="coupon_code"
+              />
+              <button class="btn btn-graylight col-3" @click.prevent="useCoupon">送出</button>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
               <span>小計</span>
               <span>NT{{ cart.total | currency}}</span>
             </div>
@@ -67,12 +79,14 @@
         <div class="col-md-12 text-center" v-else>
           <div class="jumbotron bg-white text-pinkdark">
             <h1 class="display-4 font-weight-bold">購物車內空無一物!</h1>
-            <p
-              class="lead font-weight-bold"
-            >請挑選喜歡的商品再前來購物車</p>
-            <hr class="my-4">
+            <p class="lead font-weight-bold">請挑選喜歡的商品再前來購物車</p>
+            <hr class="my-4" />
             <p class="pb-2 font-weight-bold">找不到商品嗎? 請點選下面按鈕前往商品頁！</p>
-            <router-link class="btn btn-pinkdark btn-lg text-white" to="/shopping" role="button">繼續逛逛</router-link>
+            <router-link
+              class="btn btn-pinkdark btn-lg text-white"
+              to="/shopping"
+              role="button"
+            >繼續逛逛</router-link>
           </div>
         </div>
       </div>
@@ -85,7 +99,8 @@ export default {
   data() {
     return {
       isLoading: false,
-      cart: {}
+      cart: {},
+      coupon_code: '',
     };
   },
   methods: {
@@ -113,6 +128,25 @@ export default {
           console.log(response.data);
           this.getCart();
           vm.isLoading = false;
+        }
+      });
+    },
+    useCoupon() {
+      const vm = this;
+      vm.isLoading = true;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMERPATH}/coupon`;
+      const coupon = {
+        code: vm.coupon_code,
+      };
+      this.$http.post(url, { data: coupon }).then(response => {
+        if (response.data.success) {
+          console.log(response.data);
+          vm.isLoading = false;
+          vm.getCart();
+          this.$bus.$emit("messsage:push", response.data.message, "success");
+        } else {
+          vm.getCart();
+          this.$bus.$emit("messsage:push", response.data.message, "danger");
         }
       });
     }

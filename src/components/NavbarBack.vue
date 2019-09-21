@@ -15,13 +15,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <input
-        class="form-control form-control-dark w-100 d-none  d-lg-block"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      >
-      <ul class="navbar-nav px-3 d-none d-lg-block">
+      <ul class="navbar-nav px-3 d-none d-lg-block ml-auto pt-2">
         <li class="nav-item text-nowrap">
           <a class="nav-link h5 font-weight-bold" href="#" @click.prevent="signout()">登出</a>
         </li>

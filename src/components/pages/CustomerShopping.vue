@@ -46,41 +46,7 @@
               :key="item.id"
               v-show="item.is_enabled == 1"
             >
-              <div class="item-card">
-                <div
-                  class="item-image bg-cover p-relative"
-                  :style="{backgroundImage: `url(${item.imageUrl})`}"
-                ></div>
-                <div class="item-love-icon">
-                  <label class="love-checked-display">
-                    <input type="checkbox" class="love-checkbox" />
-                    <i class="fas fa-heart fa-2x text-pinkdark love-show"></i>
-                    <i class="far fa-heart fa-2x text-pinkdark love-hidden"></i>
-                  </label>
-                </div>
-                <div class="item-body py-3 d-flex text-center">
-                  <div class="item-name col">{{ item.title }}</div>
-                  <div class="item-pric col">
-                    <strong>NT{{ item.origin_price | currency }}</strong>
-                  </div>
-                </div>
-                <div class="item-footer">
-                  <div class="row no-gutters">
-                    <div class="col text-center">
-                      <button
-                        class="btn btn-block btn-pinkdark"
-                        @click.prevent="productIntro(item.id)"
-                      >詳細介紹</button>
-                    </div>
-                    <div class="col text-center border-left border-white">
-                      <button
-                        class="btn btn-block btn-pinkdark"
-                        @click.prevent="addtoCart(item.id)"
-                      >加入購物車</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <ProductCard :productData="item" @returnProductID="addtoCart"></ProductCard>
             </div>
           </div>
           <PaginationFront :pageData="pagination" @changePage="getProducts" v-if="pagination.total_pages >=2"></PaginationFront>
@@ -93,6 +59,7 @@
 <script>
 import $ from 'jquery';
 import PaginationFront from "../PaginationFront";
+import ProductCard from "../ProductCard";
 
 export default {
   data() {
@@ -110,7 +77,8 @@ export default {
     };
   },
   components: {
-    PaginationFront
+    PaginationFront,
+    ProductCard
   },
   methods: {
     getProducts(page=1) {
@@ -125,10 +93,6 @@ export default {
 			    vm.pagination.current_page = page;  
         }
       });
-    },
-    productIntro(id) {
-      const vm = this;
-      vm.$router.push(`/product/${id}`);
     },
     addtoCart(id, qty = 1) {
       const vm = this;

@@ -150,26 +150,20 @@ export default {
 };
 
 $(document).ready(function() {
-  //Menu底部特效
+//Menu底部特效
   let selectors = {
     navBar: ".navbar",
-    navItem: ".navbar .nav-item",
-    activeNavItem: ".navbar .nav-item .router-link-exact-active",
-    magicLine: ".navbar .magic-line"
+    navItem: ".nav-item",
+    activeNavItem: ".router-link-exact-active",
+    magicLine: ".magic-line"
   };
-
-  // jQuery is for beginners
+  // 監聽
   let navBar = document.querySelector(selectors.navBar);
   let navItems = document.querySelectorAll(selectors.navItem);
   let magicLine = document.querySelector(selectors.magicLine);
   let activeNavItem = document.querySelector(selectors.activeNavItem);
 
-  /**
-   * Set the position of magic-line
-   * to the position of navItem
-   * @param {Object} navItem element
-   * @return void
-   */
+  // 底部移動特效
   function setMagicLine(navItem) {
     let x = navItem.offsetLeft;
     let width = navItem.offsetWidth;
@@ -177,23 +171,22 @@ $(document).ready(function() {
     magicLine.style.width = `${width}px`;
   }
 
-  /**
-   * Return magic-line back to
-   * active navItem when mouse
-   * leave navbar
-   */
+  //先固定在第一個active上
   setMagicLine(activeNavItem);
   // navBar.addEventListener("mouseleave", e => {
-  //   setMagicLine();
+  //   setMagicLine(activeNavItem);
   // });
 
-  /**
-   * Create a hover eventlistener
-   * for every navItem, and execute
-   * setMagicLine()
-   */
+  //滑鼠移到Navbar上底部特效跟著跑
   navItems.forEach(navItem => {
     navItem.addEventListener("mouseenter", e => {
+      setMagicLine(navItem);
+    });
+  });
+
+  //點擊時，底部特效停留在點擊選項上
+  navItems.forEach(navItem => {
+    navItem.addEventListener("click", e => {
       setMagicLine(navItem);
     });
   });

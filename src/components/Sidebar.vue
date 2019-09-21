@@ -23,7 +23,7 @@
           <router-link class="nav-link" to="/admin/orders">
             <i class="fas fa-list-alt mr-2"></i>訂單列表
           </router-link>
-          <router-link class="nav-link" to="/admin/coupon">
+          <router-link class="nav-link" to="/admin/coupons">
             <i class="fas fa-ticket-alt mr-2"></i>優惠券
           </router-link>
           <router-link class="nav-link" to="/index" target="_blank">
