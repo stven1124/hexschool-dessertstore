@@ -58,7 +58,7 @@
     </div>
 
     <section class="container my-md-5">
-      <h2 class="h1 text-pinkdark text-center my-5">熱門商品</h2>
+      <h2 class="h1 text-pinkdark text-center my-md-5 my-4">熱門商品</h2>
       <div class="row">
         <div
           class="col-xl-4 mb-5"
@@ -153,7 +153,10 @@
 
     <section>
       <div class="container mb-5">
-        <h2 class="h1 text-pinkdark text-center my-5">如需客製化 請填寫以下訂單</h2>
+        <div class="d-flex justify-content-center flex-wrap my-md-5 my-3 pt-2">
+        <h2 class="h1 text-pinkdark text-center pr-3">如需客製化</h2>
+        <h2 class="h1 text-pinkdark text-center">請填寫以下訂單</h2>
+        </div>
         <div class="row">
           <div class="col-md-6 mt-2">
             <iframe

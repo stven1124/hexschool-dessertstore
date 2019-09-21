@@ -41,7 +41,7 @@ export default {
         }
     },
     methods: {
-    returnProdID(){
+    returnProductID(){
       const vm = this;
       vm.$emit('returnProductID', vm.productData.id);
     },
