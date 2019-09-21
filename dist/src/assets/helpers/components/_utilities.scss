@@ -1,0 +1,38 @@
+.p-relative{
+    position: relative;
+}
+
+.p-absolute{
+    position: absolute;
+}
+
+.bg-cover{
+    background-position: center center;
+    background-size: cover;
+}
+
+.list-unstyled{
+    padding-left: 0px;
+    list-style: none;
+}
+
+.four-sides-color{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.z-index_-1{
+    z-index: -1;
+}
+
+.p-vertical{
+    writing-mode: vertical-rl;
+}
+
+.form-box-margin{
+    margin-left: -15px;
+    margin-right: -15px;
+}
